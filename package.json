@@ -1,7 +1,7 @@
 {
   "name": "sayso",
   "version": "1.0.0",
-  "description": "",
+  "description": "Manage HTTP authorization types",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js"
@@ -11,9 +11,15 @@
     "url": "git+https://github.com/tether/sayso.git"
   },
   "keywords": [
-    "tether"
+    "authorization",
+    "basic",
+    "digest",
+    "oauth",
+    "hawk",
+    "aws",
+    "signature"
   ],
-  "author": "Petrofeed Inc",
+  "author": "Olivier Wietrich, Petrofeed Inc",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tether/sayso/issues"
