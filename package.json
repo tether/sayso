@@ -22,5 +22,8 @@
   "devDependencies": {
     "request": "^2.81.0",
     "tape": "*"
+  },
+  "dependencies": {
+    "basic-auth": "^1.1.0"
   }
 }

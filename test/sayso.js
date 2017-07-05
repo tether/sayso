@@ -7,12 +7,15 @@ const test = require('tape')
 const request = require('request')
 const authorization = require('..')
 const http = require('http')
+const net = require('net')
 
 
 test('get credentials from basic auth', assert => {
   assert.plan(2)
   server((req, res) => {
     authorization(req, (user, pass) => {
+      console.log('user', user)
+      console.log('pass', pass)
       assert.equal(user, 'foo')
       assert.equal(pass, 'bar')
     })
