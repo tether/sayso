@@ -1,4 +1,3 @@
-
 # Sayso
 
 [![Build Status](https://travis-ci.org/petrofeed/sayso.svg?branch=master)](https://travis-ci.org/petrofeed/sayso)
@@ -6,12 +5,19 @@
 [![Downloads](https://img.shields.io/npm/dm/sayso.svg)](http://npm-stat.com/charts.html?package=sayso)
 [![guidelines](https://tether.github.io/contribution-guide/badge-guidelines.svg)](https://github.com/tether/contribution-guide)
 
-This is a simple description.
+Manage HTTP request authorization types. For now, this module only supports basic authorization but the plan is to have a unique abstraction that supports any type of authorization (Digest, OAuth, Hawk Authentication and AWS Signature).
 
 ## Usage
 
 ```js
+const http = require('http')
+const authorization = require('sayso')
 
+http.createServer((req, res) => {
+  authorization(req, (user, pass) => {
+    // do something with user name and password
+  })
+})
 ```
 
 ## Installation
@@ -43,5 +49,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  
-  
