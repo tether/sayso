@@ -4,10 +4,9 @@
  */
 
 const test = require('tape')
-const request = require('request')
+const server = require('server-test')
 const authorization = require('..')
-const http = require('http')
-const net = require('net')
+
 
 
 test('get credentials from basic auth', assert => {
@@ -19,37 +18,23 @@ test('get credentials from basic auth', assert => {
       assert.equal(user, 'foo')
       assert.equal(pass, 'bar')
     })
-  }, 'foo', 'bar')
+  }, {
+    method: 'POST',
+    headers: {
+      'Authorization' : credentials('foo', 'bar')
+    },
+    form: {}
+  })
 })
 
-
 /**
- * Create HTTP server.
+ * Create Basic Authorization headefr.
  *
- * @param {Function} cb
- * @param {String} method
- * @param {String} params
- * @param {Object} data
+ * @param {String} name
+ * @param {String} pass
  * @api private
  */
 
-function server (cb, user, password) {
-  const credentials = 'Basic ' + new Buffer(`${user}:${password}`).toString('base64')
-  const server = http.createServer((req, res) => {
-    cb(req, res)
-    res.end()
-  }).listen(() => {
-    const port = server.address().port
-    const sock = net.connect(port)
-    request.post({
-      url: `http://localhost:${port}`,
-      headers: {
-        'Authorization' : credentials
-      },
-      form: {}
-    }, () => {
-      sock.end();
-      server.close();
-    })
-  })
+function credentials (name, pass) {
+  return 'Basic ' + new Buffer(`${name}:${pass}`).toString('base64')
 }
