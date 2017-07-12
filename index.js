@@ -12,6 +12,5 @@ const basic = require('basic-auth')
  */
 
 module.exports = function (req, cb) {
-  const {name, pass} = basic(req)
-  cb(name, pass)
+  return basic(req)
 }

@@ -12,12 +12,9 @@ const authorization = require('..')
 test('get credentials from basic auth', assert => {
   assert.plan(2)
   server((req, res) => {
-    authorization(req, (user, pass) => {
-      console.log('user', user)
-      console.log('pass', pass)
-      assert.equal(user, 'foo')
-      assert.equal(pass, 'bar')
-    })
+    const user = authorization(req)
+    assert.equal(user.name, 'foo')
+    assert.equal(user.pass, 'bar')
   }, {
     method: 'POST',
     headers: {
